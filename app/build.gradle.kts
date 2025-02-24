@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -16,6 +18,13 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        //resValue(type = "String", name="google_maps_key", value = GOOGLE_MAP_KEY)
+       // buildConfigField(type = "String", name = "google_maps_key", value = GOOGLE_MAP_KEY.toString())
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").reader())
+        val GOOGLE_MAP_KEY= properties.getProperty("MAPS_API_KEY")
+        buildConfigField(type = "String", name = "GOOGLE_MAP_KEY", value = GOOGLE_MAP_KEY)
     }
 
     buildTypes {
@@ -36,6 +45,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

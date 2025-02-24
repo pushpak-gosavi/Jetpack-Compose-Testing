@@ -1,6 +1,7 @@
 package com.pushpak.textfield
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -23,14 +24,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.os.BuildCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pushpak.textfield.ui.theme.TextFieldTheme
 import com.pushpak.textfield.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
+import java.util.Properties
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val mapKey = Properties().getProperty("MAPS_API_KEY")
+
+        Log.d("local_propertiy", mapKey)
+
+        val map = BuildConfig.GOOGLE_MAP_KEY
         //enableEdgeToEdge()
         setContent {
             TextFieldTheme {
