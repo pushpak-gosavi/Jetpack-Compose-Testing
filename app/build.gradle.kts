@@ -18,11 +18,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        //resValue(type = "String", name="google_maps_key", value = GOOGLE_MAP_KEY)
-       // buildConfigField(type = "String", name = "google_maps_key", value = GOOGLE_MAP_KEY.toString())
+        // create the object of Properties class
         val properties = Properties()
+        // load the local.properties file from project
         properties.load(project.rootProject.file("local.properties").reader())
+        // call the property that declared in local.properties file with same key
         val GOOGLE_MAP_KEY= properties.getProperty("MAPS_API_KEY")
         buildConfigField(type = "String", name = "GOOGLE_MAP_KEY", value = GOOGLE_MAP_KEY)
     }
